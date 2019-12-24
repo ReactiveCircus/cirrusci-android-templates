@@ -2,6 +2,8 @@
 
 Templates for getting started with Cirrus CI for Android.
 
+If you want to learn more about Cirrus CI and why you might want to use it for Android, here's an article I wrote: [Exploring Cirrus CI for Android](https://dev.to/ychescale9/exploring-cirrus-ci-for-android-434).
+
 ## Installing Cirrus CI
 
 - Go to the Cirrus CI Application on [GitHub Marketplace](https://github.com/marketplace/cirrus-ci) and setup a plan for your account or organization.
