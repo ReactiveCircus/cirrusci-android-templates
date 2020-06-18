@@ -18,8 +18,8 @@ The following task assembles the APKs from the `app` module and runs all checks 
 ```
 assemble_and_check_task:
   timeout_in: 10m
-  # trigger the task on commits on the master branch or any pull request
-  only_if: $CIRRUS_BRANCH == "master" || CIRRUS_PR != ""
+  # trigger the task on commits on the main branch or any pull request
+  only_if: $CIRRUS_BRANCH == "main" || CIRRUS_PR != ""
   env:
     JAVA_TOOL_OPTIONS: -Xmx6g
     GRADLE_OPTS: -Dorg.gradle.daemon=false -Dkotlin.incremental=false -Dkotlin.compiler.execution.strategy=in-process
@@ -43,7 +43,7 @@ connected_check_task:
   name: Run Android instrumented tests (API $API_LEVEL)
   # timeout in 30 minutes
   timeout_in: 30m
-  only_if: $CIRRUS_BRANCH == "master" || CIRRUS_PR != ""
+  only_if: $CIRRUS_BRANCH == "main" || CIRRUS_PR != ""
   # skip the task unless sources have changed
   skip: "!changesInclude('.cirrus.yml', '*.gradle', '*.gradle.kts', '**/*.gradle', '**/*.gradle.kts', '*.properties', '**/*.properties', '**/*.kt', '**/*.xml')"
   env:
@@ -86,7 +86,7 @@ Sonatype credentials can be [encrypted on Cirrus CI](https://cirrus-ci.org/guide
 
 ```
 assemble_and_check_task:
-  only_if: $CIRRUS_BRANCH == "master" || CIRRUS_PR != ""
+  only_if: $CIRRUS_BRANCH == "main" || CIRRUS_PR != ""
   env:
     JAVA_TOOL_OPTIONS: -Xmx6g
     GRADLE_OPTS: -Dorg.gradle.daemon=false
@@ -98,7 +98,7 @@ assemble_and_check_task:
     ./gradlew assemble check
 
 connected_check_task:
-  only_if: $CIRRUS_BRANCH == "master" || CIRRUS_PR != ""
+  only_if: $CIRRUS_BRANCH == "main" || CIRRUS_PR != ""
   env:
     matrix:
       - API_LEVEL: 21
@@ -150,7 +150,7 @@ The following task uses the [cache instruction](https://cirrus-ci.org/guide/writ
 
 ```
 assemble_and_check_task:
-  only_if: $CIRRUS_BRANCH == "master" || CIRRUS_PR != ""
+  only_if: $CIRRUS_BRANCH == "main" || CIRRUS_PR != ""
   env:
     JAVA_TOOL_OPTIONS: -Xmx6g
     GRADLE_OPTS: -Dorg.gradle.daemon=false
@@ -187,7 +187,7 @@ The following task stores the test results as **JUnit XML artifacts** which can 
 
 ```
 assemble_and_check_task:
-  only_if: $CIRRUS_BRANCH == "master" || CIRRUS_PR != ""
+  only_if: $CIRRUS_BRANCH == "main" || CIRRUS_PR != ""
   env:
     JAVA_TOOL_OPTIONS: -Xmx6g
     GRADLE_OPTS: -Dorg.gradle.daemon=false
@@ -211,7 +211,7 @@ The following task will only be run after the required `initial-review` label ha
 ```
 connected_check_task:
   required_pr_labels: initial-review
-  only_if: $CIRRUS_BRANCH == "master" || CIRRUS_PR != ""
+  only_if: $CIRRUS_BRANCH == "main" || CIRRUS_PR != ""
   env:
     matrix:
       - API_LEVEL: 21
